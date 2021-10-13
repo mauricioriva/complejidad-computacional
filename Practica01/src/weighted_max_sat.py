@@ -4,21 +4,20 @@ def leer_ejemplar(ruta):
     variables = set()
     with open(ruta) as ejemplar:
         suma_pesos = 0
-        contador = 0
         lineas = ejemplar.readlines()
         # Verificación de tipo de archivo
         if lineas[0] != "TIPO=weighted_max_sat\n":
             return "Tipo de ejemplar incorrecto", None
         for indice, linea in enumerate(lineas):
             if indice != 0:
-                contador += 1 
                 suma_pesos += int(linea.split()[0])
                 clausulas.append(linea[0].strip())
+                print(linea[0].strip())
                 for i in linea:
                     if(i != " " and i != "\n" and i != "-" and not i.isdigit()):
                         variables.add(i[0])
         num_clausulas= len(clausulas)
-        promedio = suma_pesos / contador
+        promedio = suma_pesos / (len(lineas) - 1)
         num_variables=len(variables)
     ejemplar.close()
     return None, (num_clausulas, num_variables, promedio)
