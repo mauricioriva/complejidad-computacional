@@ -7,7 +7,6 @@ def leer_ejemplar(ruta):
         suma_pesos = 0
         contador = 0
         lineas = ejemplar.readlines()
-        print(lineas[0])
         # Verificación de tipo de archivo
         if lineas[0] != "TIPO=weighted_max_sat\n":
             return "Tipo de ejemplar incorrecto", None
