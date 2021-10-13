@@ -1,3 +1,4 @@
+TIPO=weighted_max_sat
 6 p q -t -v
 21 t r s
 16 -u -t q s

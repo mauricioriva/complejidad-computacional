@@ -1,3 +1,4 @@
+TIPO=weighted_max_sat
 10 a b c
 9 b c -d
 5 a c
