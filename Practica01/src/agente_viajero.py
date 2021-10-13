@@ -34,7 +34,7 @@ def convertirLista(string):
 def hacerListaDeListas(lista):
     aristas = []
     for item in lista:
-        arista = convertirCadena(item);
+        arista = convertirCadena(item)
         aristas.append(arista)
     return aristas
 
@@ -94,5 +94,5 @@ while opcion != 2:
     menu()
     opcion = int(input(""))
 
-print("Gracias por usar nuestro programa. Adios");
+print("Gracias por usar nuestro programa. Adios")
 print("---------------------------------------------------------------")

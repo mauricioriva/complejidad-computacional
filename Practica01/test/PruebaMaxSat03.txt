@@ -1,0 +1,4 @@
+6 p q -t -v
+21 t r s
+16 -u -t q s
+13 -r u -q
