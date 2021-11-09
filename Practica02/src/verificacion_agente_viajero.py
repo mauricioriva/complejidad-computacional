@@ -31,7 +31,7 @@ class TLP(object):
             costo += self.__get_peso_arista(v, v_1)
 
         if self.cota < costo:
-            return "El certificado no satisface el problema.", None
+            return "El certificado no satisface el problema.", costo
         return None, costo
 
 
@@ -59,8 +59,8 @@ if __name__ == '__main__':
 
             for i, permutacion in enumerate(permutaciones):
                 print(f"[{i}] {permutacion}")
-                if i > 10:
-                    break
+                # if i > 10:
+                #     break
 
             print("Por favor eliga una permutación: ")
             permutacion = int(input(""))
@@ -69,9 +69,9 @@ if __name__ == '__main__':
             print(f"\nNúmero de vertices: {len(tlp.nodos)}")
             print(f"Número de aristas: {len(tlp.aristas)}")
             print(f"Cota: {tlp.cota}")
+            print(f"Costo: {costo}")
 
             if error is None:
-                print(f"Costo: {costo}")
                 print("El certificado satisface el problema.\n")
             else:
                 print("El certificado no satisface el problema.\n")
