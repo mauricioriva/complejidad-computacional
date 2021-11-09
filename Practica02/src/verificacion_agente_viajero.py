@@ -3,7 +3,9 @@ from agente_viajero import leer_ejemplar
 
 
 class TLP(object):
+    '''Clase TLP del algoritmo de verificacion del agente viajero'''
     def __init__(self, ruta, cota) -> None:
+        '''Constructor'''
         self.cota = cota
         (self.nodos,
         self.aristas,
@@ -11,9 +13,19 @@ class TLP(object):
         self.arista_min) = leer_ejemplar(ruta)
 
     def get_permutaciones(self):
-        return list(itertools.permutations(self.nodos))
+        '''Obtenemos la lista con todas las permutaciones posibles'''
+        perm_iterator = itertools.permutations(self.nodos)
+        lp = []
+        cont = 0
+        for perm in perm_iterator:
+            lp.append(perm)
+            cont = cont + 1
+            if cont > len(self.nodos):
+                break
+        return lp
 
     def __get_peso_arista(self, v, v_1):
+        '''Obtenemos el peso de la arista dados 2 nodos'''
         for i in self.aristas:
             u, u_1, peso = i
             if v == u and v_1 == u_1:
@@ -21,15 +33,16 @@ class TLP(object):
         return 0
 
     def verifica(self, certificado):
-        costo = 0
-
+        '''Algoritmo de Verificacion'''
+        costo = 0 # Costo total
+        # Recorre el certificado
         for i, v in enumerate(certificado):
             if i == len(certificado) - 1:
                 v_1 = certificado[0]
             else:
                 v_1 = certificado[i + 1]
-            costo += self.__get_peso_arista(v, v_1)
-
+            costo += self.__get_peso_arista(v, v_1) # Suma el peso de la arista
+        # Comparamos el costo respecto a la cota
         if self.cota < costo:
             return "El certificado no satisface el problema.", costo
         return None, costo
@@ -54,13 +67,11 @@ if __name__ == '__main__':
             print("Por favor ingrese una cota: ")
             cota = int(input(""))
 
-            tlp = TLP(ruta, cota)
+            tlp = TLP(ruta, cota) # Creamos un objeto TLP
             permutaciones = tlp.get_permutaciones()
-
+            # El usuario escoge la permutacion
             for i, permutacion in enumerate(permutaciones):
                 print(f"[{i}] {permutacion}")
-                # if i > 10:
-                #     break
 
             print("Por favor eliga una permutación: ")
             permutacion = int(input(""))
